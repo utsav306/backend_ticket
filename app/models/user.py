@@ -17,3 +17,4 @@ class User(Base):
     role = Column(Enum(UserRole), default=UserRole.USER, nullable=False)
 
     bookings = relationship("Booking", back_populates="user")
+    waitlists = relationship("Waitlist", back_populates="user")

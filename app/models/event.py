@@ -13,3 +13,4 @@ class Event(Base):
     booked_count = Column(Integer, default=0)  # to track filled seats
 
     bookings = relationship("Booking", back_populates="event")
+    waitlists = relationship("Waitlist", back_populates="event")

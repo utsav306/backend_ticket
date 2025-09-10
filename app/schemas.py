@@ -10,6 +10,19 @@ class UserRoleEnum(str, Enum):
 class BookingRequest(BaseModel):
     user_id: int
 
+class WaitlistRequest(BaseModel):
+    user_id: int
+
+class WaitlistResponse(BaseModel):
+    id: int
+    user_id: int
+    event_id: int
+    position: int
+    joined_at: datetime
+    
+    class Config:
+        from_attributes = True
+
 class UserCreate(BaseModel):
     name: str
     email: str
