@@ -10,7 +10,7 @@ from app.cache.cache_utils import (
 )
 from datetime import datetime
 
-router = APIRouter()
+router = APIRouter(prefix="/admin", tags=["admin"])
 
 # Dependency
 def get_db():
@@ -156,8 +156,8 @@ def cache_status():
             "note": "Redis not available, using fallback cache"
         }
 
-# DELETE /admin/cache/clear - Clear all cache
-@router.delete("/admin/cache/clear")
+# DELETE /cache/clear - Clear all cache
+@router.delete("/cache/clear")
 def clear_all_cache():
     try:
         # Clear all cache patterns
@@ -166,8 +166,8 @@ def clear_all_cache():
     except Exception as e:
         return {"error": f"Failed to clear cache: {str(e)}"}
 
-# DELETE /admin/cache/events - Clear event-related cache
-@router.delete("/admin/cache/events")
+# DELETE /cache/events - Clear event-related cache
+@router.delete("/cache/events")
 def clear_events_cache():
     try:
         invalidate_event_caches()

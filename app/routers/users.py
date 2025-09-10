@@ -10,7 +10,7 @@ from app.cache.cache_utils import (
 )
 from datetime import datetime
 
-router = APIRouter()
+router = APIRouter(prefix="/users", tags=["users"])
 
 # Dependency
 def get_db():
@@ -29,8 +29,8 @@ def check_admin(user_id: int, db: Session):
         raise HTTPException(status_code=403, detail="Admin access required")
     return user
 
-# POST /users - Create user
-@router.post("/users")
+# POST / - Create user
+@router.post("/")
 def create_user(user_data: UserCreate, db: Session = Depends(get_db)):
     # Check if user already exists
     existing_user = db.query(User).filter(User.email == user_data.email).first()
@@ -51,8 +51,8 @@ def create_user(user_data: UserCreate, db: Session = Depends(get_db)):
     db.refresh(user)
     return user
 
-# GET /users - List all users (Admin only for demo, could be public)
-@router.get("/users")
+# GET / - List all users (Admin only for demo, could be public)
+@router.get("/")
 def get_users(db: Session = Depends(get_db)):
     users = db.query(User).all()
     return users
