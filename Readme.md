@@ -121,8 +121,8 @@ You can get the entire system running on your local machine with just a few comm
 1. **Clone the repository:**
 
    ```sh
-   git clone [https://github.com/utsav306/backend_ticket.git]
-   cd [backend_ticket]
+   git clone https://github.com/utsav306/backend_ticket.git
+   cd backend_ticket
    ```
 
 2. **Create an environment file:**
