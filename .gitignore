@@ -1,2 +1,8 @@
 venv/
+#add env file
+__pycache__/
+
+env/
+build/
+develop-eggs/
 .env
