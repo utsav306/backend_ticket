@@ -80,7 +80,8 @@ def test_waitlist_flow_improved():
             
             if booking_response.status_code == 200:
                 booking_result = booking_response.json()
-                booking_id = booking_result.get("booking_id")
+                # Support both 'booking_id' and 'id' keys for compatibility
+                booking_id = booking_result.get("booking_id") or booking_result.get("id")
                 booking_ids.append(booking_id)
                 print(f"✅ User {users[i]['id']} booked successfully (Booking ID: {booking_id})")
             else:
