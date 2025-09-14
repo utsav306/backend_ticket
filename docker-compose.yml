@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: atlan
+      POSTGRES_PASSWORD: atlanpassword
+      POSTGRES_DB: atlandb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://atlan:atlanpassword@db:5432/atlandb
+    ports:
+      - "8000:8000"
+    # command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  postgres_data:
